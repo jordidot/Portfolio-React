@@ -22,7 +22,7 @@ function MarkdownRenderer({ content }) {
           img: ImageRenderer,
           button: Button
 
-        }}>{content}</Markdown>;
+        }}>{content}</Markdown>
       </section>
     </>
   )

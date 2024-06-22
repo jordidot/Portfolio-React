@@ -3,18 +3,18 @@ export const Abc = "asddsadas"
 export const contents = [
   {
     img: "https://madridadventours.com/wp-content/uploads/2020/10/escalada-deportiva.jpg",
-    title: "Deportes",
-    desc: "Como alguien que ama los deportes al aire libre, entiendo la importancia del sacrificio y el esfuerzo por lograr un objetivo.",
+    title: "titleDeportes",
+    desc: "descDeportes" ,
   },
   {
     img: "https://www.help-help.es/wp-content/uploads/2023/07/familia-numerosa.jpg",
-    title: "Familia",
-    desc: "Disfruto mucho pasando tiempo con mi familia, lo que me ha enseñado la importancia del trabajo en equipo y la colaboración.",
+    title: "titleFamilia",
+    desc: "descFamilia",
   },
   {
     img: "https://img.freepik.com/foto-gratis/experiencia-programacion-persona-que-trabaja-codigos-computadora_23-2150010125.jpg?size=626&ext=jpg&ga=GA1.1.672697106.1717891200&semt=ais_user",
-    title: "Mejora",
-    desc: "Me esfuerzo cada día por mejorar en diversos aspectos de mi trabajo en programación. Mi enfoque principal es la eficiencia.",
+    title: "titleMejora",
+    desc: "descMejora",
   },
 ];
 

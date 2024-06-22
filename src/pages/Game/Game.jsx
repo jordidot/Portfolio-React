@@ -1,23 +1,22 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Unity, useUnityContext } from 'react-unity-webgl';
-import ReactMarkdown from 'react-markdown';
 import './Game.css';
 import UnityLogo from '../../../public/TemplateData/unity-logo-light.png'
 import NavItem from '../../components/NavItem';
 import { Progress, Typography, Navbar, Button } from '@material-tailwind/react';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
-import { GameProject } from '../Projects/Markdowns';
+import { useTranslation } from 'react-i18next';
+import LenguageSwitcher from '../../components/LenguageSwitcher';
 
 const Game = () => {
-
+  const {t,i18n} = useTranslation();
+  const [idioma, setIdioma] = useState(i18n.language)
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: './Build/Projects.loader.js',
     dataUrl: './Build/webgl.data',
     frameworkUrl: './Build/build.framework.js',
     codeUrl: './Build/build.wasm',
   });
-
-  const [fullscreen, setFullscreen] = useState(false);
 
   const [openBottom, setOpenBottom] = useState(false);
   const openDrawerBottom = () => setOpenBottom(true);
@@ -40,6 +39,9 @@ const Game = () => {
 
   return (
     <>
+      <section className="flex justify-end p-3">
+        <LenguageSwitcher idioma={idioma} setIdioma={setIdioma}/>
+      </section>
       <Navbar shadow={false} fullWidth className="border-0">
         <div className="mx-auto flex items-center justify-center">
           <ul className="flex items-center">
@@ -75,7 +77,7 @@ const Game = () => {
           style={{ visibility: isLoaded ? "visible" : "hidden" }}
         />
         {isLoaded && (<>
-          <MarkdownRenderer content={GameProject} />
+          <MarkdownRenderer content={t('GameProject')} />
         </>)}
       </div>
     </>

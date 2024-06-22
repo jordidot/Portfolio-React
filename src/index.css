@@ -16,3 +16,7 @@ df-messenger {
     --df-messenger-send-icon: #878fac;
     --df-messenger-user-message: rgb(76 175 80);
 }
+
+*{
+    z-index: 1;
+}
