@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Button } from "@material-tailwind/react";
 import './Projects.css';
 import ContactDrawer from '../../components/ContactaDrawer';
@@ -16,6 +16,20 @@ function Projects() {
   const closeDrawerBottom = () => setOpenBottom(false);
   const {t,i18n} = useTranslation();
   const [idioma, setIdioma] = useState(i18n.language)
+    const [ismobile, setMobileVersion] = useState(null);
+
+  const isMobileVersion = () => {
+    setMobileVersion(window.screen.width >= 1024);
+  }
+
+  useEffect(() => {
+    isMobileVersion();
+    window.addEventListener('resize', isMobileVersion);
+    return () => {
+      window.removeEventListener('resize', isMobileVersion);
+    }
+  }, []);
+
   return (
     <>
       <section className="flex justify-end p-3">
@@ -29,9 +43,9 @@ function Projects() {
             <NavItem url="/">
               <Button className="bg-green-500 leading-snug">Inicio</Button>
             </NavItem>
-            <NavItem url="game">
-              <Button className="bg-green-500 leading-snug">Juego Unity</Button>
-            </NavItem>
+            {ismobile && <NavItem url="game">
+              <Button className="bg-green-500 leading-snug">{t('juegUnity')}</Button>
+            </NavItem>}
               <NavItem url={'#'}>
               <Button onClick={openDrawerBottom} className="bg-black leading-snug">Contactar</Button>
             </NavItem>
