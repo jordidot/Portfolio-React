@@ -25,23 +25,35 @@ import {
 } from "@material-tailwind/react";
 
 function Home() {
-
   const [openBottom, setOpenBottom] = React.useState(false);
   const openDrawerBottom = () => setOpenBottom(true);
   const closeDrawerBottom = () => setOpenBottom(false);
   const [activeStep, setActiveStep] = useState(0);
   const [isLastStep, setIsLastStep] = useState(false);
   const [isFirstStep, setIsFirstStep] = useState(false);
-
   const handleNext = () => !isLastStep && setActiveStep((cur) => cur + 1);
   const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
   const { t, i18n } = useTranslation();
   const [idioma, setIdioma] = useState(i18n.language);
+  const [ismobile, setMobileVersion] = useState(null);
+
+  const isMobileVersion = () => {
+    setMobileVersion(window.screen.width >= 1024);
+  }
+
+  useEffect(() => {
+    isMobileVersion();
+    window.addEventListener('resize', isMobileVersion);
+    return () => {
+      window.removeEventListener('resize', isMobileVersion);
+    }
+  }, []);
 
   useEffect(()=>{
     document.getElementById('df-messengerid').classList.add('hidden');
     setTimeout( document.getElementById('df-messengerid').classList.remove('hidden'),100)
   }, [setIdioma])
+  
 
   return (
     <>
@@ -67,9 +79,9 @@ function Home() {
             <NavItem url="projects">
               <Button className="bg-green-500 leading-snug">{t('mod3d')}</Button>
             </NavItem>
-            <NavItem url="game">
+            {ismobile && <NavItem url="game">
               <Button className="bg-green-500 leading-snug">{t('juegUnity')}</Button>
-            </NavItem>
+            </NavItem>}
             <NavItem url={'#'}>
               <Button onClick={openDrawerBottom} className="bg-black leading-snug">{t('contactar')}</Button>
             </NavItem>

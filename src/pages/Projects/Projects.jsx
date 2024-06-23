@@ -38,7 +38,7 @@ function Projects() {
           </ul>
         </div>
       </Navbar>
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 m-5 sm:h-[50vh">
         {ModelViewer && <section style={{ width: "100%", height: "100vh", overflow: "hidden" }}>
           <ModelViewer />
         </section>}
